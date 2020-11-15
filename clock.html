@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+
+  <title>Analogue Clock</title>
+</head>
+<body>
+  <div class="clock">
+    <div class="hour">
+      <div class="hr" id="hr"></div>
+    </div>
+    <div class="min">
+      <div class="mn" id="mn"></div>
+    </div>
+    <div class="sec">
+      <div class="sc" id="sc"></div>
+    </div>
+  </div>
+  <br>
+  <div id="digitalClock">
+    <div id="hour"></div>
+    <div id="minutes"></div>
+    <div id="seconds"></div>
+   <!--<div id="ampm"></div>-->
+  </div>
+  <script>
+    const hr = document.querySelector("#hr");
+    const mn = document.querySelector("#mn");
+    const sc = document.querySelector("#sc");
+
+    setInterval(()=>{
+      let day =  new Date();
+      let hh = day.getHours() * 30;
+      let mm = day.getMinutes() * 6;
+      let ss = day.getSeconds() * 6;
+
+      hr.style.transform=`rotateZ(${hh+(mm/12)}deg)`;
+      mn.style.transform=`rotateZ(${mm}deg)`;
+      sc.style.transform=`rotateZ(${ss}deg)`;
+
+      let hour = document.querySelector("#hour");
+      let minutes = document.querySelector("#minutes");
+      let seconds = document.querySelector("#seconds");
+      let ampm = document.querySelector("#ampm");
+
+      let d = new Date();
+      let h = d.getHours();
+      let mi = d.getMinutes();
+      let s = d.getSeconds();
+    /**  let am = "AM";
+
+     if(h>12){
+        h = h -12;
+        let am ="PM";
+      }**/
+
+      //prostheto to 0 prin ton arithmo 
+      h = (h<10) ? "0" + h : h
+      mi = (mi<10) ? "0" + mi : mi
+      s = (s<10) ? "0" + s : s
+
+      hour.innerHTML = h + ":";
+      minutes.innerHTML = mi + ":";
+      seconds.innerHTML = s;
+    })
+
+
+  </script>
+
+
+</body>
+</html>
